@@ -1,38 +1,82 @@
-.App {
-  text-align: center;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: 
+    "image sidebar"
+    "slider sidebar";
+  height: 100vh;
+  width: 100vw;
+  background-color: #A1A5A6;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-image {
+  grid-area: image;
+  background-color: #A1A5A6;
+  background-image: url("https://st4.depositphotos.com/1482106/29580/i/450/depositphotos_295808990-stock-photo-beautiful-sunset-beach-slowinski-national.jpg");
+  width: 100%;
+  height: 100%;
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: hsl(59, 76%, 40%);
+  border-left: 1px solid hsl(69, 68%, 32%);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: stretch;
 }
 
-.App-link {
-  color: #61dafb;
+.sidebar-item {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: hsl(76, 70%, 41%);
+  padding: 1rem;
+  position: relative;
+  transition: background-color 150ms;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar-item:hover, .sidebar-item:focus {
+  background-color: hsl(64, 79%, 43%);
+}
+
+.sidebar-item.active {
+  background-color: hsl(69, 70%, 40%);
+}
+
+.sidebar-item::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  bottom: 0;
+  height: 1px;
+  background-color: hsl(61, 81%, 44%);
+}
+
+.sidebar-item:last-child::after {
+  display: none;
+}
+
+.slider-container {
+  grid-area: slider;
+  margin: 2rem;
+  padding: 2rem;
+}
+
+.slider {
+  width: 100%;
+  cursor: pointer;
 }
